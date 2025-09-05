@@ -44,7 +44,7 @@ public class HomeController {
 		String validityString = validity.name().toLowerCase();
 		
 		if(validity == UserValidity.VALID) {
-			session.setAttribute("user", service.findByUsername(credentials.getUsername()));
+			session.setAttribute("user", service.findByUsername(credentials.getUsername()).orElse(null));
 		}
 		
 		return ResponseEntity.ok(validityString);
@@ -56,15 +56,11 @@ public class HomeController {
 		return ResponseEntity.ok("logged out");
 	}
 	
-//	@GetMapping("/createSuperRoot")
+//	@GetMapping("/test")
 //	public String test() {
-//		MyHRUser superRoot = new MyHRUser();
-//		superRoot.setUsername("rohit@myHR.in");
-//		superRoot.setPassword("Test@123");
-//		service.addUser(superRoot);
-//		return "created";
+//		return "This is just a test....";
 //	}
-	
+//	
 	private UserValidity authenticateUser(Credentials credentials) {
 		MyHRUser user = service.findByUsername(credentials.getUsername()).orElse(null);
 		
