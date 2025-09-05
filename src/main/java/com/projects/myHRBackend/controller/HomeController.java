@@ -1,5 +1,7 @@
 package com.projects.myHRBackend.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,8 @@ import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class HomeController {
+	private static final Logger log = LoggerFactory.getLogger(HomeController.class);
+	
 	private enum UserValidity{
 		VALID, INVALID
 	};
@@ -45,6 +49,7 @@ public class HomeController {
 		
 		if(validity == UserValidity.VALID) {
 			session.setAttribute("user", service.findByUsername(credentials.getUsername()).orElse(null));
+			log.info("login successful {} ", credentials.getUsername());
 		}
 		
 		return ResponseEntity.ok(validityString);
@@ -52,6 +57,7 @@ public class HomeController {
 	
 	@PostMapping("/Logout")
 	public ResponseEntity<String> logout(HttpSession session) {
+		log.info("logged out successfully");
 		session.invalidate();
 		return ResponseEntity.ok("logged out");
 	}
