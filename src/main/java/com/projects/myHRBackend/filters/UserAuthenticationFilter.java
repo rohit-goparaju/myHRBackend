@@ -34,6 +34,7 @@ public class UserAuthenticationFilter extends HttpFilter{
 		String loginPath = request.getContextPath()+"/Login";
 		String rootPath = request.getContextPath()+"/";
 		String logoutPath = request.getContextPath() + "/Logout";
+//		String createsuperadminPath = request.getContextPath() + "/createsuperadmin";
 		if(path.equals(loginPath) || path.equals(rootPath) || path.equals(logoutPath)) {
 			chain.doFilter(request, response);
 			return;

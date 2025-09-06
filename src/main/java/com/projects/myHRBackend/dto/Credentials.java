@@ -1,4 +1,4 @@
-package com.projects.myHRBackend;
+package com.projects.myHRBackend.dto;
 
 public class Credentials {
 	private String username;

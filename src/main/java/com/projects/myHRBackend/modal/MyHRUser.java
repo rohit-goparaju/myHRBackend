@@ -1,7 +1,11 @@
 package com.projects.myHRBackend.modal;
 
+import com.projects.myHRBackend.enums.MyHRUserLevel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,15 +19,21 @@ public class MyHRUser {
 	private String username;
 	@Column(nullable = false)
 	private String password;
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+	private MyHRUserLevel level = MyHRUserLevel.EMPLOYEE;
 	public MyHRUser() {
 		super();
 	}
-	public MyHRUser(int id, String username, String password) {
+	
+	public MyHRUser(int id, String username, String password, MyHRUserLevel level) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.level = level;
 	}
+
 	public int getId() {
 		return id;
 	}
@@ -42,8 +52,18 @@ public class MyHRUser {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public MyHRUserLevel getLevel() {
+		return level;
+	}
+
+	public void setLevel(MyHRUserLevel level) {
+		this.level = level;
+	}
+
 	@Override
 	public String toString() {
-		return "MyHRUser [id=" + id + ", username=" + username + ", password=" + password + "]";
+		return "MyHRUser [id=" + id + ", username=" + username + ", password=" + password + ", level=" + level + "]";
 	}
+
 }
