@@ -64,16 +64,7 @@ public class HomeController {
 		return ResponseEntity.ok("logged out");
 	}
 	
-//	@GetMapping("/createsuperadmin")
-//	public String test() {
-//		MyHRUser superAdmin = new MyHRUser();
-//		superAdmin.setLevel(MyHRUserLevel.EMPLOYEE);
-//		superAdmin.setUsername("superemployee@myHR.in");
-//		superAdmin.setPassword("SEmployee@123");
-//		service.addUser(superAdmin);
-//		return "This is just a test....";
-//	}
-//	
+	
 	private UserValidity authenticateUser(Credentials credentials) {
 		MyHRUser user = service.findByUsername(credentials.getUsername()).orElse(null);
 		
